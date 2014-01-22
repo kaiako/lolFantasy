@@ -4,12 +4,14 @@ import security.User
 
 class Account {
 	
+	String firstName;
+	String middleName;
+	String lastName;
 	User user;
 	String email;
-	Long accountId;
 	int wins;
 	int losses;
-	File profilePicture;
+	String profilePicturePath;
 	List<Team> teams;
 	
 }

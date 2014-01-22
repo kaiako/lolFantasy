@@ -8,7 +8,7 @@ class User {
 
 	String username
 	String password
-	Account account
+//	Account account
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked

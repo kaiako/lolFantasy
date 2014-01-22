@@ -11,6 +11,10 @@ class Settings {
 	PointSetting support;
 	PointSetting proteam;
 	
+	
+	static constraints = {
+	}
+	
 	def getPositionSetting(Positions pos){
 		switch(pos){
 			case Positions.TOP:
