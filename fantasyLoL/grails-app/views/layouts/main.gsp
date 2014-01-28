@@ -43,12 +43,11 @@
         </nav>
 
         <!-- Modal -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">x</button>
-                    <h3>Login to FantasyLCS</h3>
               </div>
               <div id="modalViewPort" class="modal-body">
               </div>
@@ -70,17 +69,18 @@
               <p class="text-center">Kaiako Gaming &copy; 2013</p>
 		</div>
 		
-		<script>
+		<script>			
 			function loginModal(){
 				$.ajax({
 				  url: "${createLink(controller : 'login', action: 'authForm')}",
 				  context: document.body
 				}).done(function(result) {
 				  $('#modalViewPort' ).html(result);
-				});
-				$('#loginModal').modal('show');			
+				  $('#mainModal').modal('show');		
+				});	
 			};
 		</script>
+		<g:pageProperty name="page.script"/>
 		<r:layoutResources />		
 		</div>
 	</body>

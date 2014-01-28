@@ -5,8 +5,9 @@ import enums.Positions
 class ProPlayer {
 
 	String name
+	String alias;
 	int week
-	ProTeam team
+	ProTeam proTeam
 	Positions position
 	int kills
 	int deaths
@@ -14,10 +15,21 @@ class ProPlayer {
 	int cs
 	Profile profile
 	
-	static belongsTo = [team:Team]
-	
 	static constraints = {
-		team nullable: true
+		name nullable:true
+	}
+	//increments week just for testing
+	ProPlayer(ProPlayer player, int kills, int deaths, int assists, int cs){
+		this.week = player.week + 1
+		this.name = player.name
+		this.alias = player.alias
+		this.proTeam = player.proTeam
+		this.position = player.position
+		this.profile = player.profile
+		this.kills = kills
+		this.deaths = deaths
+		this.assists = assists
+		this.cs = cs		
 	}
 
 	double calculateScore(PointSetting setting){

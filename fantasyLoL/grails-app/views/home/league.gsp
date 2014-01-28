@@ -7,7 +7,6 @@
 </head>
 
 <body>
-	<div style="width:100%;" class="container">
     	<content tag="main">
 			<!-- user's team pages -->
 		    <div class="panel-group" id="accordion">
@@ -15,7 +14,7 @@
 			    <div class="panel-heading" align="center">
 			      <h4 class="panel-title">				 
 			         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-			          League Name
+			          ${league.name}
 			        </a>
 			      </h4>
 			    </div>
@@ -24,21 +23,23 @@
 			       <table class="table table-responsive">  
 				        <thead>
 				          <tr><!-- various points -->	
-				          	 <th>UserName</th>  
-					         <th></th> 
-					         <th>League Record</th> 
+				          	 <th>Rank</th>  
+				          	 <th>Team Name</th>  
+					         <th>User Name</th> 
+					         <th>League Record</th> 					         
+					         <th>Opponent</th> 
 					     </tr>  
 					   </thead>
-					   <tbody>  
+					   <tbody>
+					   <g:each in="${league.teams.sort{it.rank}}" var="team">  
 					     <tr><!-- da table -->
-					         <th></th>
-					         <th></th> 
-					         <th></th> 
-					         <th></th>
-					         <th></th> 
-			    	         <th></th> 
-				             <th></th> 
+					         <th>${team.rank}</th>
+					         <th><a href="javascript:teamModal(${team.id},${team.account.id})">${team.name}</a></th>
+					         <th>${team.account.user.username}</th> 
+					         <th>${team.wins} - ${team.losses}</th> 
+					         <th>-</th> 
 					     </tr>  
+					     </g:each>
 					   </tbody>  
 					 </table>
 				   </div>
@@ -46,8 +47,22 @@
 			   </div>
 			</div><!-- user's team pages end -->
    		</content>
-   	</div> <!-- end container -->
 
 <!-- javascript -->
+	<content tag="script">
+		<script>			
+			function teamModal(teamId, accountId){
+				$.ajax({
+				  url: "${createLink(controller : 'ajax', action: 'team')}",
+				  type: 'POST',
+				  data: {accountId: accountId, teamId: teamId},
+				  context: document.body
+				}).done(function(result) {
+				  $('#modalViewPort' ).html(result);
+				  $('#mainModal').modal('show');		
+				});	
+			};
+		</script>
+	</content>
 </body>
 </html>

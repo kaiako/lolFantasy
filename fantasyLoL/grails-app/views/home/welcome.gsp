@@ -25,10 +25,12 @@
             </div>
             <div class="collapse navbar-collapse" id="#collapse-main-menu">
             	<ul class="nav navbar-nav">
+            		<sec:ifLoggedIn>
 		                <li> <g:link contoller='home' action="user">User Page</g:link></li>
-		                <li> <g:link contoller='home' action="team">Team Page</g:link></li>
+		                <li> <g:link contoller='home' action="proTeam">Team Page</g:link></li>
 		                <li> <g:link contoller='home' action="league">League Page</g:link></li>
 		                <li> <g:link contoller='home' action="player">Player Page</g:link></li>
+		            </sec:ifLoggedIn>
                 </ul>
             </div>  
         </nav>
